@@ -25,7 +25,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @Service
 @Slf4j
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Override
     public Result sendCode(String phone, HttpSession session) {
@@ -42,7 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public Result login(LoginFormDTO loginForm, HttpSession session) {
-        String code = (String) session.getAttribute("code"+loginForm.getCode());
+        String code =  session.getAttribute("code"+loginForm.getPhone()) == null ? "" : (String) session.getAttribute("code"+loginForm.getPhone());
         if(!loginForm.getCode().equals(code)) {
             return Result.fail("验证码不正确");
         }

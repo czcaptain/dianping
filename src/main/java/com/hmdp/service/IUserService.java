@@ -19,5 +19,10 @@ public interface IUserService extends IService<User> {
 
     Result sendCode(String phone, HttpSession session);
 
+    /**
+     * 保存验证码code
+     */
+    //void saveCode();
+
     Result login(LoginFormDTO loginForm, HttpSession session);
 }
